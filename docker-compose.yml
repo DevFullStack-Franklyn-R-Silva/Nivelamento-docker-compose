@@ -11,6 +11,8 @@ services:
       MYSQL_DATABASE: wordpress
     ports:
       - "3308:3306"
+    networks:
+      - wordpress-network
   wordpress:
     image: wordpress:latest
     volumes:
@@ -26,3 +28,8 @@ services:
       - 80:80
     depends_on:
       - db
+    networks:
+      - wordpress-network
+networks:
+  wordpress-network:
+    driver: bridge
